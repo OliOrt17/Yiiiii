@@ -300,7 +300,7 @@ li > a:only-child:after { content: ''; }
 
 	nav a:hover,
  	nav ul ul ul a {
-		background-color: #009f4d;
+		color: #009f4d;
 	}
   
 	nav ul li ul li .toggle,
@@ -591,6 +591,32 @@ p.about-text {
     margin-bottom: 50px;
 }
 
+#blog-sec{
+	font-family: monospace;
+}
+
+#blog-sec h1{
+	text-align: center;
+	color: forestgreen;
+	margin-bottom: 50px;
+}
+
+.gallery{
+	margin: 10px 50px;
+
+}
+
+.gallery img{
+	width: 250px;
+	padding: 5px;
+	filter:grayscale(100%);
+	transition: 1s;
+}
+
+.gallery img:hover{
+	filter: grayscale(0);
+	transform: scale(1.1);
+}
 .blog-left,.blog-middle,.blog-right{
 	position: relative;
 }
