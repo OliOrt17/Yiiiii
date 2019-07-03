@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Agro Harvest | Galeria </title>
-<!-- resolucion mov -->
+<title>Agro Harvest | Contacto</title>
+<!-- resoluciones cel -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content="Agro Harvest Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -21,9 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- css  -->
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
     <link href="css/style.css" rel='stylesheet' type='text/css' /><!-- estilo css -->
-	<link href="css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
-	<link rel="stylesheet" href="css/lightbox.min.css">
-	<script type="text/javascript" src="backend/js/lightbox-plus-jquery.min.js"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css  -->
 	
 	<link href="css/css_slider.css" type="text/css" rel="stylesheet" media="all">
@@ -31,7 +30,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- google fonts -->
 	<link href="//fonts.googleapis.com/css?family=Thasadith:400,400i,700,700i&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
 	<!-- //google fonts -->
-	
 	
 </head>
 <body>
@@ -46,11 +44,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 			<input type="checkbox" id="drop" />
 			<ul class="menu mt-md-2 ml-auto">
-				<li class="mr-lg-4 mr-2"><a href="index.html">Inicio</a></li>
-				<li class="mr-lg-4 mr-2"><a href="about.html">Acerca de</a></li>
-				<li class="mr-lg-4 mr-2"><a href="services.html">Servicios</a></li>
-				<li class="mr-lg-4 mr-2 active"><a href="gallery.html">Galeria</a></li>
-				<li class="mr-lg-4 mr-2"><a href="contact.html">Contacto</a></li>
+				<li class="mr-lg-4 mr-2"><a href="index.php">Inicio</a></li>
+				<li class="mr-lg-4 mr-2"><a href="about.php">Acerca de</a></li>
+				<li class="mr-lg-4 mr-2"><a href="services.php">Servicios</a></li>
+				<li class="mr-lg-4 mr-2"><a href="gallery.php">Galeria</a></li>
+				<li class="mr-lg-4 mr-2 active"><a href="contact.php">Contacto</a></li>
 				<li class="mr-lg-4 mr-2"><a href="backend/index.html">Entrar</a></li>
 				<li class="mr-lg-4 mr-2"><span><span class="fa fa-phone"></span> +12 345 6789</span></li>
 			</ul>
@@ -67,20 +65,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //banner -->
 
-<!-- galeria  -->
-<section class="blog py-5" id="blog-sec">
-		<div class="container py-md-5">
-			<h1>Imagenes de galeria</h1>
-
-			<divdiv class="gallery">
-				<a href="images/1.jpg" data-lightbox="mygallery"><img src="images/5.jpg" alt=""></a>
-				<a href="images/3.jpg" data-lightbox="mygallery"><img src="images/3.jpg" alt=""></a>
-				<a href="images/2.jpg" data-lightbox="mygallery"><img src="images/2.jpg" alt=""></a>
-				<a href="images/5.jpg" data-lightbox="mygallery"><img src="images/1.jpg" alt=""></a>
-			</divdiv>
+<!-- contacto -->
+<section class="contact py-5">
+	<div class="container py-sm-3">
+		<h3 class="heading mb-sm-5 mb-4 text-center"> Contactanos</h3>
+		<div class="row map-pos">
+			<div class="col-lg-4 col-md-6 address-row">
+				<div class="row">
+					<div class="col-2 address-left">
+						<div class="contact-icon">
+							<span class="fa fa-home" aria-hidden="true"></span>
+						</div>
+					</div>
+					<div class="col-10 address-right">
+						<h5>Visitanos</h5>
+						<p>Agro Harvest del Sureste, Cancun, Mexico.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 address-row w3-agileits">
+				<div class="row">
+					<div class="col-2 address-left">
+						<div class="contact-icon">
+							<span class="fa fa-envelope" aria-hidden="true"></span>
+						</div>
+					</div>
+					<div class="col-10 address-right">
+						<h5>Envianos un correo</h5>
+						<p><a href="mailto:info@example.com">Example@gmail.com</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 address-row">
+				<div class="row">
+					<div class="col-2 address-left">
+						<div class="contact-icon">
+							<span class="fa fa-phone" aria-hidden="true"></span>
+						</div>
+					</div>
+					<div class="col-10 address-right">
+						<h5>Llamanos</h5>
+						<p>+12(345) 6789 111</p>
+					</div>
+				</div>
+			</div>
 		</div>
-	</section>
-<!-- //galeria -->
+		<form action="#" method="post">
+			<div class="row">
+				<div class="col-md-6 contact-left">
+					<input type="text" name="Name" placeholder="Nombre" required="" id="nombre">
+					<input type="email" name="Email" placeholder="Correo Electronico" required="" id="correo">
+					<input type="text" name="Mobile Number" placeholder="Numero de Telefono" required="" id="tel">
+				</div>
+				<div class="col-md-6 contact-right mt-md-0 mt-4">
+					<textarea name="Message" placeholder="Mensajee" required="" id="mensaje"></textarea>
+					<button class="btn" id="contacto">Enviar</button>
+				</div>
+			</div>
+		</form>
+		<!-- mapa -->
+		<div class="map mt-5">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14889.369627024624!2d-86.77179185!3d21.098910899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1561410689198!5m2!1ses-419!2smx" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<!-- //mapa -->
+	</div>
+</section>
+<!-- //contacto -->
 
 <!-- footer -->
 	<footer class="text-center py-5">
@@ -97,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul>
 					<li>
 						<p>
-							<span class="fa fa-map-marker mr-2"></span>Agro Harvest, Cancun, Mexico
+							<span class="fa fa-map-marker mr-2"></span>Agro Harvest del Sureste, Cancun, Mexico.
 						</p>
 					</li>
 					<li class="mx-4">
@@ -114,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<!-- //datos -->
-			<!-- redes -->
+			<!-- rs -->
 			<div class="footercopy-social my-4">
 				<ul>
 					<li>
@@ -149,15 +199,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li>
 				</ul>
 			</div>
-			<!-- //redes -->
+			<!-- //rs -->
 		</div>
 	</footer>
 	<!-- //footer -->
 
-	<!-- flechita de regreso -->
+	<!-- flecha de top -->
 	<a href="#home" class="move-top text-center"></a>
-	<!-- //flechita de regreso -->
+	<!-- //flecha de top -->
 
-	
+	<script src="backend/js/jquery-3.3.1.min.js"></script>
+    <script src="backend/js/main.js"></script>
 </body>
 </html>

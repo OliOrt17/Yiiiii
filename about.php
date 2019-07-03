@@ -1,3 +1,7 @@
+<?php
+require_once 'backend/includes/_db.php';
+global $db;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +48,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 			<input type="checkbox" id="drop" />
 			<ul class="menu mt-md-2 ml-auto">
-				<li class="mr-lg-4 mr-2"><a href="index.html">Inicio</a></li>
-				<li class="mr-lg-4 mr-2 active"><a href="about.html">Acerca de</a></li>
-				<li class="mr-lg-4 mr-2"><a href="services.html">Servicios</a></li>
-				<li class="mr-lg-4 mr-2"><a href="gallery.html">Galeria</a></li>
-				<li class="mr-lg-4 mr-2"><a href="contact.html">Contacto</a></li>
+				<li class="mr-lg-4 mr-2"><a href="index.php">Inicio</a></li>
+				<li class="mr-lg-4 mr-2 active"><a href="about.php">Acerca de</a></li>
+				<li class="mr-lg-4 mr-2"><a href="services.php">Servicios</a></li>
+				<li class="mr-lg-4 mr-2"><a href="gallery.php">Galeria</a></li>
+				<li class="mr-lg-4 mr-2"><a href="contact.php">Contacto</a></li>
 				<li class="mr-lg-4 mr-2"><span><span class="fa fa-phone"></span> +12 345 6789</span></li>
 			</ul>
 		</nav>
@@ -108,14 +112,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container py-5">
 			<div class="w3-stats">
 				<div class="row">
+						<?php
+							$stats = $db->select("stats",["stats.sta_nom", "stats.sta_num", "stats.sta_ico"]);
+							foreach($stats as $key => $sta){
+						?>
 					<div class="col-lg-3 col-6">
 						<div class="counter">
-							<span class="fa fa-smile-o"></span>
-							<div class="timer count-title count-number mt-2">5100</div>
-							<p class="count-text text-uppercase">clientes felices</p>
+							<span class="<?php echo $sta["sta_ico"];?>"></span>
+							<div class="timer count-title count-number mt-2"><?php echo $sta["sta_num"];?></div>
+							<p class="count-text text-uppercase"><?php echo $sta["sta_nom"];?></p>
 						</div>
 					</div>
-					<div class="col-lg-3 col-6">
+					<?php 
+							}
+					/*<div class="col-lg-3 col-6">
 						<div class="counter">
 							<span class="fa fa-pagelines"></span>
 							<div class="timer count-title count-number mt-2">2271</div>
@@ -136,6 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p class="count-text text-uppercase">productos</p>
 						</div>
 					</div>
+					*/?>
 				</div>
 			</div>
 		</div>

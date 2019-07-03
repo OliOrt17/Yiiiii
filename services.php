@@ -1,3 +1,7 @@
+<?php
+require_once 'backend/includes/_db.php';
+global $db;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +48,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 			<input type="checkbox" id="drop" />
 			<ul class="menu mt-md-2 ml-auto">
-				<li class="mr-lg-4 mr-2"><a href="index.html">Inicio</a></li>
-				<li class="mr-lg-4 mr-2"><a href="about.html">Acerca de</a></li>
-				<li class="mr-lg-4 mr-2 active"><a href="services.html">Servicios</a></li>
-				<li class="mr-lg-4 mr-2"><a href="gallery.html">Galeria</a></li>
-				<li class="mr-lg-4 mr-2"><a href="contact.html">Contacto</a></li>
+				<li class="mr-lg-4 mr-2"><a href="index.php">Inicio</a></li>
+				<li class="mr-lg-4 mr-2"><a href="about.php">Acerca de</a></li>
+				<li class="mr-lg-4 mr-2 active"><a href="services.php">Servicios</a></li>
+				<li class="mr-lg-4 mr-2"><a href="gallery.php">Galeria</a></li>
+				<li class="mr-lg-4 mr-2"><a href="contact.php">Contacto</a></li>
 				<li class="mr-lg-4 mr-2"><a href="backend/index.html">Entrar</a></li>
 				<li class="mr-lg-4 mr-2"><span><span class="fa fa-phone"></span> +12 345 6789</span></li>
 			</ul>
@@ -70,14 +74,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-lg-5">
 		<h3 class="heading mb-sm-5 mb-4 text-center">Nuestros Servicios</h3>
 		<div class="row">
+			<?php
+				$servicios = $db->select("servicios",["servicios.ser_id", "servicios.ser_nom", "servicios.ser_des"]);
+				foreach($servicios as $key => $ser){
+			?>
 			<div class="col-lg-4 col-sm-6">
 				<div class="home-grid">
-					<span class="num-title">01</span>
-					<h4 class="home-title mt-3">Desarrollo de Cultivos</h4>
-					<p class="mt-2"> Pellentesque in ipsum id orci porta dapibus roined magna ipsum.</p>
+					<span class="num-title"><?php echo $ser["ser_id"];?></span>
+					<h4 class="home-title mt-3"><?php echo $ser["ser_nom"];?></h4>
+					<p class="mt-2"><?php echo $ser["ser_des"];?></p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
+			<?php
+				}
+			/*<div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
 				<div class="home-grid">
 					<span class="num-title">02</span>
 					<h4 class="home-title mt-3">Plantaciones</h4>
@@ -91,6 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p class="mt-2"> Pellentesque in ipsum id orci porta dapibus roined magna ipsum.</p>
 				</div>
 			</div>
+			
 		</div>
 		
 		<div class="row ">
@@ -111,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-			
+		*/?>	
 	</div>
 </section>
 <!-- //servicios  -->
@@ -121,12 +132,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-md-5">
 		<h3 class="heading mb-5 text-center"> ¿Porque somos tu mejor eleccion?</h3>
 		<div class="welcome-bottom text-center">
+			<?php
+				$caracteristicas = $db->select("caracteristicas",["caracteristicas.car_nom", "caracteristicas.car_desc", "caracteristicas.car_ico"]);
+				foreach($caracteristicas as $key => $car){
+			?>
 			<div class="welcome-grid">
-				<span class="fa fa-apple"></span>
-				<h4 class="my-3">Cosecha</h4>
-				<p>quis nostrum ullamet corporis suscipit.</p>
+				<span class="<?php echo $car["car_ico"];?>"></span>
+				<h4 class="my-3"><?php echo $car["car_nom"];?></h4>
+				<p><?php echo $car["car_desc"];?></p>
 			</div>
-			<div class="welcome-grid">
+			<?php
+				}
+
+			/*<div class="welcome-grid">
 				<span class="fa fa-skyatlas"></span>
 				<h4 class="my-3">Semillas</h4>
 				<p>quis nostrum ullamet corporis suscipit.</p>
@@ -147,6 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h4 class="my-3">Ambiente</h4>
 				<p>quis nostrum ullamet corporis suscipit.</p>
 			</div>
+			*/?>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -158,14 +177,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-md-5">
 		<h3 class="heading mb-sm-5 mb-4 text-center"> Nuestros productos y servicios</h3>
 		<div class="row blog-grids">
+			<?php
+				$productos = $db->select("productos",["productos.pro_nom", "productos.pro_desc", "productos.pro_img"]);
+				foreach($productos as $key => $pro){
+			?>
 			<div class="col-lg-4 col-md-6 blog-left mb-lg-0 mb-sm-5 pb-lg-0 pb-5">	
-				<img src="images/s1.jpg" class="img-fliud" alt="" />
+				<img src="<?php echo $pro["pro_img"];?>" class="img-fliud" alt="" />
 				<div class="blog-info">
-					<h4>Granjas <span class="fa fa-pagelines"></span></h4>
-					<p class="mt-2">Integer sit ut amet mattis quam, sit amet ultricies velit. Praesent ullam corper dui turpis sit.</p>
+					<h4><?php echo $pro["pro_nom"];?><span class="fa fa-pagelines"></span></h4>
+					<p class="mt-2"><?php echo $pro["pro_desc"];?></p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 blog-middle mb-lg-0 mb-sm-5 pb-lg-0 pb-md-5">	
+			<?php
+			}
+			/*<div class="col-lg-4 col-md-6 blog-middle mb-lg-0 mb-sm-5 pb-lg-0 pb-md-5">	
 				<img src="images/s2.jpg" class="img-fliud" alt="" />
 				<div class="blog-info">
 					<h4>Cultivo <span class="fa fa-pagelines"></span></h4>
@@ -179,6 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p class="mt-2">Integer sit ut amet mattis quam, sit amet ultricies velit. Praesent ullam corper dui turpis sit.</p>
 				</div>
 			</div>
+			*/?>
 		</div>
 	</div>
 </section>

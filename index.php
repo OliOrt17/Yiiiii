@@ -44,11 +44,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 			<input type="checkbox" id="drop" />
 			<ul class="menu mt-md-2 ml-auto">
-				<li class="mr-lg-4 mr-2 active"><a href="index.html">Inicio</a></li>
-				<li class="mr-lg-4 mr-2"><a href="about.html">Acerca De</a></li>
-				<li class="mr-lg-4 mr-2"><a href="services.html">Servicios</a></li>
-				<li class="mr-lg-4 mr-2"><a href="gallery.html">Galeria</a></li>
-				<li class="mr-lg-4 mr-2"><a href="contact.html">Contacto</a></li>
+				<li class="mr-lg-4 mr-2 active"><a href="index.php">Inicio</a></li>
+				<li class="mr-lg-4 mr-2"><a href="about.php">Acerca De</a></li>
+				<li class="mr-lg-4 mr-2"><a href="services.php">Servicios</a></li>
+				<li class="mr-lg-4 mr-2"><a href="gallery.php">Galeria</a></li>
+				<li class="mr-lg-4 mr-2"><a href="contact.php">Contacto</a></li>
 				<li class="mr-lg-4 mr-2"><a href="backend/index.html">Entrar</a></li>
 				<li class="mr-lg-4 mr-2"><span><span class="fa fa-phone"></span> +12 345 6789</span></li>
 			</ul>
