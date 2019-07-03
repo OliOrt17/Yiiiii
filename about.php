@@ -159,11 +159,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-lg-3">
 		<h3 class="heading mb-sm-5 mb-4 text-center">Nuestro Equipo</h3>
 		<div class="row team-bottom text-center">
+			<?php
+				$integrantes = $db->select("integrantes",["integrantes.int_nombre", "integrantes.int_img"]);
+				foreach($integrantes as $key => $int){
+			?>
 			<div class="col-lg-3 col-sm-6 team-grid">
-				<img src="images/team1.jpg" class="img-fluid" alt="">
+				<img src="<?php echo $int["int_img"];?>" class="img-fluid" alt="">
 				<div class="caption">
 					<div class="team-text">
-						<h4>Maria Sabina</h4>
+						<h4><?php echo $int["int_nombre"];?></h4>
 					</div>
 					<ul class="mt-2">
 						<li>
@@ -189,7 +193,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6 team-grid mt-sm-0 mt-5">
+			<?php
+			}
+			/*<div class="col-lg-3 col-sm-6 team-grid mt-sm-0 mt-5">
 				<img src="images/team2.jpg" class="img-fluid" alt="">
 				<div class="caption">
 					<div class="team-text">
@@ -279,6 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 			</div>
+			*/?>
 		</div>
 	</div>
 </div>
@@ -289,22 +296,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container py-xl-5 py-lg-3">
 		<h3 class="heading mb-sm-5 mb-4 text-center">Nuestros clientes dicen...</h3>
 		<div class="row">
+				<?php
+					$reviews = $db->select("reviews",["reviews.rev_nom", "reviews.rev_com", "reviews.rev_cli", "reviews.rev_img"]);
+					foreach($reviews as $key => $rev){
+				?>
 			<div class="col-lg-4 item">
 				<div class="feedback-info pt-5 pb-4 px-4">
-					<h4 class="mb-3">La mejor compania de Cultivos
+					<h4 class="mb-3"><?php echo $rev["rev_nom"];?>
 					</h4>
-					<p><span class="fa fa-quote-left text-color mr-2"></span> Vulputate ac met semper varius Nullam consequat sapien sed leot cursus rhoncus. Nullam dui mi.</p>
+					<p><span class="fa fa-quote-left text-color mr-2"></span><?php echo $rev["rev_com"];?></p>
 					<div class="feedback-grids mt-3">
 						<div class="feedback-img">
-							<img src="images/te1.jpg" class="img-fluid rounded-circle" alt="" />
+							<img src="<?php echo $rev["rev_img"];?>" class="img-fluid rounded-circle" alt="" />
 						</div>
 						<div class="feedback-img-info">
-							<h5>Maria Jarra</h5>
+							<h5><?php echo $rev["rev_cli"];?></h5>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
 				</div>
 			</div>
+			<?php
+					}
+			/*		
 			<div class="col-lg-4 item-2 mt-lg-0 mt-4">
 				<div class="feedback-info pt-5 pb-4 px-4">
 					<h4 class="mb-3">La granja agricola
@@ -337,6 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
+			*/?>
 		</div>
 	</div>
 </section>
