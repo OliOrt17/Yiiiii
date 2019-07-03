@@ -68,17 +68,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //banner -->
 
 <!-- galeria  -->
-<section class="blog py-5" id="blog-sec">
-		<div class="container py-md-5">
+<section id="blog-sec">
+		<div class="container">
+		<br>
 			<h1>Imagenes de galeria</h1>
 
 			<divdiv class="gallery">
-				<a href="images/1.jpg" data-lightbox="mygallery"><img src="images/5.jpg" alt=""></a>
+				<a href="images/1.jpg" data-lightbox="mygallery"><img src="images/1.jpg" alt=""></a>
 				<a href="images/3.jpg" data-lightbox="mygallery"><img src="images/3.jpg" alt=""></a>
 				<a href="images/2.jpg" data-lightbox="mygallery"><img src="images/2.jpg" alt=""></a>
-				<a href="images/5.jpg" data-lightbox="mygallery"><img src="images/1.jpg" alt=""></a>
+				<a href="images/5.jpg" data-lightbox="mygallery"><img src="images/5.jpg" alt=""></a>
 			</divdiv>
 		</div>
+		<br><br><br><br>
 	</section>
 <!-- //galeria -->
 

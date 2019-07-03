@@ -79,12 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h4 class=""> Nuestro objetivo es generar insumos alimenticios 100% organicos para todas las personas</h4>
 			</div>
 			<div class="col-lg-6 pl-xl-5 mt-lg-0 mt-4 about-right">
-				<p>Donec consequat sapien ut leo cursus rhoncus. Nullam dui mi, vulputate ac metus
-					at, semper varius orci. Nulla accumsan ac elit in congue. Class aptent taciti sociosqu ad litora torquent
-					per conubia aptent taciti sociosqu ad lorem ipsum dolor.</p>
-				<p class="pt-3 mt-3 border-top"><span class="fa fa-quote-left text-color mr-2"></span>Nullam consequat sapien ut
-					leot cursus rhoncus. Nullam dui mi, vulputate ac metus at, semper varius orci. Nulla sed accumsan ac elit in congue. Class aptent taciti sociosqu ad
-					litora torquent per taciti sociosqu ad litora torquent.</p>
+				<p>El enfoque de Agro Harvest para la agricultura se concentra en la precisión que conecta todo el ciclo de cultivo, desde la planificación de la empresa a la siembra, el cuidado del cultivo, la cosecha y el almacenamiento de granos, proporcionando a las operaciones agrícolas de flotas mixtas un mejor acceso a sus datos de explotación para que puedan tomar decisiones comerciales más informadas, lo que redunda en una productividad y una rentabilidad mayores.</p>
+				<p class="pt-3 mt-3 border-top"><span class="fa fa-quote-left text-color mr-2"></span>La experiencia profunda de Agro Harvest, la larga trayectoria y la amplia red de distribuidores nos dan un conocimiento inherente de las necesidades de nuestros clientes mejor que otros. </p>
 			</div>
 		</div>
 	</div>
@@ -99,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h4 class="abt-text text-capitalize">Le brindamos algunos consejos sobre el cuidado de su jardín de acuerdo a su estilo</h4>
 			</div>
 			<div class="col-md-3">
-				<a href="services.html" class="text-capitalize serv_link btn">Nuestros Servicios</a>
+				<a href="services.php" class="text-capitalize serv_link btn">Nuestros Servicios</a>
 			</div>
 		</div>
 	</div>

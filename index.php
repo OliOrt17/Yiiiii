@@ -77,9 +77,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="w3layouts-banner-info text-center">
 								<h3 class="text-wh">Cosecha</h3>
 								<h4 class="text-wh mx-auto my-4">Cultivando nuevos cultivos para que los agricultores aumenten las ganancias</h4>
-								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-									labore et dolore magna aliqua nostrud exerci sed.</p>
-								<a href="about.html" class="button-style mt-sm-5 mt-4">Lee mas</a>
+								<p class="text-li mx-auto mt-2">Si no te gusta lo que estas cosechando, analiza y piensa bien que es lo que vas a sembrar despues.
+</p>
+								<a href="about.php" class="button-style mt-sm-5 mt-4">Lee mas</a>
 							</div>
 						</div>
 					</div>
@@ -92,9 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="w3layouts-banner-info text-center">
 								<h3 class="text-wh">Agricultura</h3>
 								<h4 class="text-wh mx-auto my-4">Cultivando nuevos cultivos para que los agricultores aumenten sus ganancias.</h4>
-								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-									labore et dolore magna aliqua nostrud exerci sed.</p>
-								<a href="about.html" class="button-style mt-sm-5 mt-4">Lee mas</a>
+								<p class="text-li mx-auto mt-2">La agricultura es la profesión propia del sabio, las adecuada para el sencillo y la ocupación mas digna para todo el hombre</p>
+								<a href="about.php" class="button-style mt-sm-5 mt-4">Lee mas</a>
 							</div>
 						</div>
 					</div>
@@ -107,9 +106,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="w3layouts-banner-info text-center">
 								<h3 class="text-wh">Cultivando</h3>
 								<h4 class="text-wh mx-auto my-4">Cultivando nuevos cultivos para que los agricultores aumenten sus ganancias.</h4>
-								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-									labore et dolore magna aliqua nostrud exerci sed.</p>
-								<a href="about.html" class="button-style mt-sm-5 mt-4">Lee mas</a>
+								<p class="text-li mx-auto mt-2">Al menos una vez en la vida necesitaremos de un abogado, un medico o un arquitecto, pero tres veces al día por el resto de nuestras vidas un : AGRICULTOR.</p>
+								<a href="about.php" class="button-style mt-sm-5 mt-4">Lee mas</a>
 							</div>
 						</div>
 					</div>
@@ -123,9 +121,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h3 class="text-wh">Cosecha</h3>
 								<h4 class="text-wh mx-auto my-4">
 									Cultivando nuevos cultivos para que los agricultores aumenten sus ganancias.</h4>
-								<p class="text-li mx-auto mt-2">Ut enim ad minim quis nostrud exerci sed do eiusmod tempor incididunt ut
-									labore et dolore magna aliqua nostrud exerci sed.</p>
-								<a href="about.html" class="button-style mt-sm-5 mt-4">Lee mas</a>
+								<p class="text-li mx-auto mt-2">Si no te gusta lo que estas cosechando, analiza y piensa bien que es lo que vas a sembrar despues.</p>
+								<a href="about.php" class="button-style mt-sm-5 mt-4">Lee mas</a>
 							</div>
 						</div>
 					</div>
@@ -241,10 +238,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<img src="images/core.jpg" class="img-fliud" alt="" />
 			</div>
 			<div class="col-lg-6 core-right">
-				<h4 class="mt-4">Mejorar la agricultura, mejorar la vida, cultivar nuevos cultivos para que los agricultores aumenten las ganancias.</h4>
-				<p class="mt-3">Integer sit amet mattis quam, sit amet ultricies velit. Praesent ullam corper dui turpis dolor sit amet quam.
-				Nulla commodo gravida porttitor. Aenean posuere lacus quis leo imperdiet laoreet. Proin vulputate semper odio quam. Nulla commodo 
-				gravida porttitor. Aenean posuere lacus quis.</p>
+				<h4 class="mt-4">Mejorar la agricultura, mejorar la vida, ayudar al mundo.</h4>
+				<p class="mt-3">Los valores centrales de Agro Harvest guían nuestra conducta: personal y profesional. En este mundo de la agricultura siempre cambiante, nuestros valores centrales son constantes. Nuestros valores subyacen nuestro trabajo, cómo interactuamos y qué estrategias usamos para cumplir nuestra misión. Nuestros valores centrales son las prácticas que empleamos todos los días, en todo lo que hacemos.</p>
 			</div>
 		</div>
 	</div>
@@ -260,10 +255,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4 class="">Somos innovadores en el negocio agrícola. Nuestro objetivo es llevar alimentos orgánicos saludables a todas las personas.</h4>
 				</div>
 				<div class="col-lg-5 col-md-7 bg-middle mt-lg-0 mt-4">	
-					<p class="">Integer sit amet mattis quam, sit amet dol ultricies velit. Praesent ullam corper duits turpis dolor sit amet quam.
-					Nulla comodol gravida porttitor. Aenean posuere lacusnt quis leo imperdiet laoreet. Proin vulputat.</p>
-					<p class="mt-3">Integer sit ut amet mattis quam, sit amet ultricies velit. Praesent ullam corper dui turpis dolor sit amet quam.
-					Nulla sed commodo gravida porttitor.</p>
+					<p class="">Más gente. Más alimentos. Más productividad agrícola. Es una oportunidad de crecimiento simple pero imperiosa. Estamos apalancando nuestra presencia global para convertir este potencial en una realidad, especialmente en los mercados en crecimiento.</p>
+					<p class="mt-3">La maquinaria agrícola profesional es clave para estimular la productividad agrícola y reducir el desperdicio poscosecha. Si bien las necesidades específicas varían de un mercado a otro, nuestro enfoque común es asociarnos completamente con cada cliente en cada fase del proceso agrícola.</p>
 				</div>
 				<div class="col-lg-3 col-md-5 bg-right mt-lg-0 mt-4">	
 					<ul>
@@ -327,11 +320,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="row">
 			<div class="col-12">
 				<h3 class="mb-4 heading">El mejor momento para <span>Plantar un arbol</span> es ahora.</h3>
-				<p>Sed ut perspiciatis unde omnis natus error dolor volup tatem ed accus antium dolor emque
-				laudantium, totam rem aperiam, eaqu ipsa quae ab illo quasi architi ecto beatae vitae dicta
-				sunt dolor ipsum.</p>
-				<a href="services.html" class="btn mr-3"> Nuestros servicios</a>
-				<a href="contact.html" class="btn btn1"> Contáctenos</a>
+				<p>Sabemos que la rentabilidad del concesionario es decisiva para nuestro éxito, y esperamos ser el proveedor preferido.</p>
+				<a href="services.php" class="btn mr-3"> Nuestros servicios</a>
+				<a href="contact.php" class="btn btn1"> Contáctenos</a>
 			</div>		
 		</div>		
 	</div>		
