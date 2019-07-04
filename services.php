@@ -78,8 +78,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$servicios = $db->select("servicios",["servicios.ser_id", "servicios.ser_nom", "servicios.ser_des"]);
 				$count = $db->count("servicios");
 				$numero = 3;
-				//if($count%$numero==0){
-									//}
 				foreach($servicios as $key => $ser){		
 			?>
 			<div class="col-lg-4 col-sm-6">
@@ -88,9 +86,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4 class="home-title mt-3"><?php echo $ser["ser_nom"];?></h4>
 					<p class="mt-2"><?php echo $ser["ser_des"];?></p>
 				</div>
+				<br>
 			</div>
-			<?php
-					
+			
+			<?php	
 				}
 			/*<div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
 				<div class="home-grid">
