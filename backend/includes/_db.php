@@ -12,12 +12,6 @@ $db = new Medoo([
 ]);
 
 
-    $db ->insert("comentario",[
-    "cmt_nom"=>"nnd,,dm",
-    "cmt_email"=>"kkldj",
-    "cmt_tel"=>"747483",
-    "cmt_mensaje"=>"lkjlrekjw",
-    "cmt_fechA"=>date("Y").date("m").date("d"),
-    "cmt_status"=>1]);
+   
 
 ?>

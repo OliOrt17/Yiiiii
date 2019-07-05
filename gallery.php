@@ -1,3 +1,7 @@
+<?php
+require_once 'backend/includes/_db.php';
+global $db;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,18 +73,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- galeria  -->
 <section id="blog-sec">
-		<div class="container">
 		<br>
 			<h1>Imagenes de galeria</h1>
 
-			<divdiv class="gallery">
-				<a href="images/1.jpg" data-lightbox="mygallery"><img src="images/1.jpg" alt=""></a>
-				<a href="images/3.jpg" data-lightbox="mygallery"><img src="images/3.jpg" alt=""></a>
-				<a href="images/2.jpg" data-lightbox="mygallery"><img src="images/2.jpg" alt=""></a>
-				<a href="images/5.jpg" data-lightbox="mygallery"><img src="images/5.jpg" alt=""></a>
-			</divdiv>
-		</div>
-		<br><br><br><br>
+			<div class="gallery" >
+			<?php
+				$galeria = $db->select("galeria","*");
+				foreach($galeria as $key => $gal){		
+			?>
+				<a href="<?php echo $gal["gal_img"];?>" data-lightbox="mygallery" data-title="<?php echo $gal["gal_titulo"];?>"> <img src="<?php echo $gal["gal_img"];?>" alt=""></a>
+				<?php	
+				}
+			?>
+			</div>
 	</section>
 <!-- //galeria -->
 
