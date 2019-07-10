@@ -1067,9 +1067,9 @@ $("#login").on("click",function(event){
 //Crear usuario desde el login
 $("#registrar").click(function(event){
     event.preventDefault();
-    let nom=$("#nombre").val();
-    let email=$("#email").val();
-    let pass=$("#password").val();
+    let nom=$("#reg-nom").val();
+    let email=$("#reg-correo").val();
+    let pass=$("#reg-pass").val();
 
     let obj={
         "accion": "registro",
@@ -1079,7 +1079,7 @@ $("#registrar").click(function(event){
     };
 
     $.ajax({
-        url:'../includes/_funciones.php',
+        url:'includes/_funciones.php',
         type: 'POST',
         dataType: 'json',
         data: obj,
