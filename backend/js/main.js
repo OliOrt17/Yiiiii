@@ -45,6 +45,134 @@ $("#archivo").change(function(){
     console.log(formDatos);
 }); 
 
+//reviews
+
+$("#main").on("click",".eliminar_rev",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_rev",
+        "rev" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Registro eliminado","success");
+                mostrar_sta();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_rev", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_rev",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.rev_nom);
+         $("#descripcion").val(data.rev_com);
+         $("#icono").val(data.rev_cli);
+         $("#icono").val(data.rev_img);
+    }, "JSON");
+    $("#registrar_rev").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+function mostrar_rev(){
+    let obj = {
+      "accion" : "mostrar_rev"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.rev_nom}</td>
+        <td>${elem.rev_com}</td>
+        <td>${elem.rev_cli}</td>
+        <td>${elem.rev_img}</td>
+        <td>
+        <a href="#" class="editar_rev"data-id="${elem.rev_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_rev" data-id="${elem.rev_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+$("#registrar_rev").click(function(){
+    let nom=$("#nombre").val();
+    let des=$("#descripcion").val();
+    let ico=$("#icono").val();
+    let foto=$("#foto").val();
+    let obj = {
+    "accion" : "insertar_rev",
+    "nom":nom,
+    "des":des,
+    "ico":ico,
+    "foto":foto
+    
+    };
+      
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_rev";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+         }
+      
+        if(nom.length==0 || des.length==0  || ico.length==0){
+          $.notify("Por favor no dejes campos vacios","info");
+
+      }else{
+        $.ajax({
+            url:'../includes/_funciones.php',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                if(data==1){
+                    $.notify("Registro exitoso","success");
+                    change_view(); 
+                    mostrar_rev();
+                    $("#frm_datos")[0].reset(); 
+                }else if(data==3){
+                    $.notify("Registro actualizado","success");
+                    change_view(); 
+                    mostrar_rev();
+                    $("#frm_datos")[0].reset(); 
+                }else{
+                    $.notify("Error","error");
+                }
+            }
+        })
+      }
+  });
+
 //Integrantes
 
 $("#registrar_nos").click(function(){

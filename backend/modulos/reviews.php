@@ -75,14 +75,14 @@ require_once '../includes/_funciones.php';
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="stats.php">
+                    <a class="nav-link" href="stats.php">
                         <span data-feather="home"></span>
                         Stats
                     </a>
                     </li>
                     
                     <li class="nav-item">
-                    <a class="nav-link" href="reviews.php">
+                    <a class="nav-link active" href="reviews.php">
                         <span data-feather="home"></span>
                         Reviews
                     </a>
@@ -95,7 +95,7 @@ require_once '../includes/_funciones.php';
        
        <main id="main" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-        <h2>Stats
+        <h2>Comentarios
             <button type="button" id="btn_nuevo" class="btn btn-primary">Agregar nuevo
                 <span class="fas fa-plus"></span>
                 </button>
@@ -104,27 +104,29 @@ require_once '../includes/_funciones.php';
           <table class="table table-striped table-sm" id="table_datos">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Numero</th>
-                <th>Icono</th>
+                <th>Empresa</th>
+                <th>Comentario</th>
+                <th>Cliente</th>
+                <th>Foto</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
               <?php 
-              $stats= $db->select("stats","*"); 
-              foreach ($stats as $stats => $sta) {
+              $reviews= $db->select("reviews","*"); 
+              foreach ($reviews as $reviews => $rev) {
                 ?>
                 <tr>
-                  <td><?php echo $sta["sta_nom"]; ?></td>
-                  <td><?php echo $sta["sta_num"]; ?></td>
-                  <td><?php echo $sta["sta_ico"]; ?></td>
+                  <td><?php echo $rev["rev_nom"]; ?></td>
+                  <td><?php echo $rev["rev_com"]; ?></td>
+                  <td><?php echo $rev["rev_cli"]; ?></td>
+                  <td><?php echo $rev["rev_img"]; ?></td>
                   <td>
-                    <a href="#" class="editar_sta"data-id="<?php echo $sta["sta_id"]; ?>"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="editar_rev"data-id="<?php echo $rev["rev_id"]; ?>"><i class="fas fa-edit"></i></a>
                  </td>
                 <td>
-                <a href="#" class="eliminar_sta" data-id="<?php echo $sta["sta_id"]; ?>"><i class="fas fa-trash"></i></a>
+                <a href="#" class="eliminar_rev" data-id="<?php echo $rev["rev_id"]; ?>"><i class="fas fa-trash"></i></a>
                 </td>
                   </tr>
                   <?php
@@ -139,23 +141,29 @@ require_once '../includes/_funciones.php';
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="nombre">Tipo</label>
+                    <label for="nombre">Empresa</label>
                     <input type="text" class="form-control" name="nombre" id="nombre">
                   </div>
                   <div class="form-group">
-                    <label for="descripcion">Numero</label>
+                    <label for="descripcion">Comentario</label>
                     <input type="text" class="form-control" name="descripcion" id="descripcion">
                   </div>
                   <div class="form-group">
-                    <label for="icono">Icono</label>
+                    <label for="icono">Cliente</label>
                     <input type="text" class="form-control" name="icono" id="icono">
+                  </div>
+                  <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="file" name="archivo" id="archivo">
+                    <input type="hidden" readonly="readonly" class="form-control" name="foto" id="foto">
+                    <div id="respuesta"></div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <button type="button" class="btn btn-outline-danger cancelar">Cancelar</button>
-                  <button type="button" class="btn btn-outline-success" id="registrar_sta">Guardar</button>
+                  <button type="button" class="btn btn-outline-success" id="registrar_rev">Guardar</button>
                   
                 </div>
               </div>

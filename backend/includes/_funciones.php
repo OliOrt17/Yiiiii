@@ -135,6 +135,72 @@
             case "editar_nos":
             editar_nos();
             break;
+            case "eliminar_rev":
+            eliminar_rev();
+            break;
+            case "insertar_rev":
+            insertar_rev();
+            break;
+            case "consulta_rev":
+            consulta_rev();
+            break;
+            case "editar_rev":
+            editar_rev();
+            break;
+            case "mostrar_rev":
+            mostrar_rev();
+            break;
+        }
+    }
+
+    //reviews
+
+    function mostrar_rev(){
+        global $db;
+        $consultar = $db->select("reviews","*");
+	    echo json_encode($consultar); 
+    }
+    function editar_rev(){
+        global $db;
+        extract($_POST);
+        $editar=$db->update("reviews",["rev_nom"=>$nom,
+        "rev_com"=>$des,"rev_cli"=>$ico,"rev_img"=>$foto],["rev_id"=>$registro]);
+
+        
+        if($editar){
+            echo 3;
+        }else{
+            echo 4;
+        }
+    }
+    function consulta_rev(){
+        global $db;
+        extract($_POST);
+        $consultar = $db -> get("reviews","*",["AND" => ["rev_id"=>$registro]]);
+        echo json_encode($consultar);
+    }
+    function insertar_rev(){
+        global $db;
+        extract($_POST);
+        $insertar=$db->insert("reviews",["rev_nom"=>$nom,"rev_com"=>$des,
+        "rev_cli"=>$ico, "rev_img"=>$foto,"rev_fa"=>date("Y").date("m").date("d")]);
+
+        
+        if($insertar){
+            echo 1;
+        }else{
+            echo 2;
+        }
+    }
+    function eliminar_rev(){
+        global $db;
+        extract($_POST);
+        $eliminar=$db->delete("reviews",["rev_id" => $rev]);
+
+        if($eliminar){
+            echo 1;
+        }else{
+            echo 2;
         }
     }
 
