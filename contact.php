@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-		<form action="#" method="post">
+		<form action="#" id="contactos">
 			<div class="row">
 				<div class="col-md-6 contact-left">
 					<input type="text" name="Name" placeholder="Nombre" required="" id="nombre">
@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-6 contact-right mt-md-0 mt-4">
 					<textarea name="Message" placeholder="Mensajee" required="" id="mensaje"></textarea>
-					<button class="btn" id="contacto">Enviar</button>
+					<button class="btn" id="contacto1">Enviar</button>
 				</div>
 			</div>
 		</form>
@@ -210,5 +210,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<script src="backend/js/jquery-3.3.1.min.js"></script>
     <script src="backend/js/main.js"></script>
+	<script src="backend/js/notify.js"></script>
 </body>
 </html>

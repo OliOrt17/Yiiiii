@@ -1,3 +1,5 @@
+
+//ocultar formulario
 function change_view(vista = "mostrar_datos"){
     $("#main").find(".view").each(function(){
       $(this).addClass('d-none');
@@ -8,6 +10,8 @@ function change_view(vista = "mostrar_datos"){
     });
 }
 change_view();
+
+//mostrar formulario
 $("#btn_nuevo").click(function(){
     change_view("formulario_datos");
   });
@@ -15,7 +19,8 @@ $("#btn_nuevo").click(function(){
     $("#frm_datos")[0].reset();
     change_view();
 });
-//Galeria
+
+//Cargar imagen
 $("#archivo").change(function(){
     let formDatos=new FormData($("#frm_datos")[0]);
     formDatos.append("accion", "carga_foto");
@@ -39,6 +44,623 @@ $("#archivo").change(function(){
     });
     console.log(formDatos);
 }); 
+
+//Integrantes
+
+$("#registrar_nos").click(function(){
+        
+    let nombre=$("#nombre").val();
+    let foto=$("#foto").val();
+    let obj = {
+    "accion" : "insertar_nos",
+    "nombre":nombre,
+    "foto":foto
+        
+    };
+      
+   
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_nos";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+        }
+      
+        if(nombre.length==0 || foto.length==0 ){
+            $.notify("Por favor no dejes campos vacios","info");
+        }else{ 
+            $.ajax({
+                url:'../includes/_funciones.php',
+                type:'POST',
+                dataType:'json',
+                data:obj,
+                success:function(data){
+                    if(data==1){
+                        $.notify("Registro exitoso","success");
+                        change_view(); 
+                        mostrar_nos();
+                        $("#frm_datos")[0].reset(); 
+                    }else if(data==3){
+                        $.notify("Registro actualizado","success");
+                        change_view(); 
+                        mostrar_nos();
+                        $("#frm_datos")[0].reset(); 
+                    }else{
+                        $.notify("Error","error");
+                    }
+                }
+            })
+        }
+});
+function mostrar_nos(){
+    let obj = {
+      "accion" : "mostrar_nos"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.int_nombre}</td>
+        <td>${elem.int_img}</td>
+        <td>${elem.int_fa}</td>
+        <td>
+        <a href="#" class="editar_nos"data-id="${elem.int_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_nos" data-id="${elem.int_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+  $("#main").on("click",".eliminar_nos",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_nos",
+        "nos" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Foto eliminado","success");
+                mostrar_nos();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_nos", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_nos",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.int_nombre);
+         $("#foto").val(data.int_img);
+    }, "JSON");
+    $("#registrar_nos").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+
+//Stats
+
+$("#main").on("click",".eliminar_sta",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_sta",
+        "sta" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Registro eliminado","success");
+                mostrar_sta();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_sta", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_sta",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.sta_nom);
+         $("#descripcion").val(data.sta_num);
+         $("#icono").val(data.sta_ico);
+    }, "JSON");
+    $("#registrar_sta").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+function mostrar_sta(){
+    let obj = {
+      "accion" : "mostrar_sta"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.sta_nom}</td>
+        <td>${elem.sta_num}</td>
+        <td>${elem.sta_ico}</td>
+        <td>
+        <a href="#" class="editar_sta"data-id="${elem.sta_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_sta" data-id="${elem.sta_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+$("#registrar_sta").click(function(){
+    let nom=$("#nombre").val();
+    let des=$("#descripcion").val();
+    let ico=$("#icono").val();
+    let obj = {
+    "accion" : "insertar_sta",
+    "nom":nom,
+    "des":des,
+    "ico":ico
+    
+    };
+      
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_sta";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+         }
+      
+        if(nom.length==0 || des.length==0  || ico.length==0){
+          $.notify("Por favor no dejes campos vacios","info");
+
+      }else{
+        $.ajax({
+            url:'../includes/_funciones.php',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                if(data==1){
+                    $.notify("Registro exitoso","success");
+                    change_view(); 
+                    mostrar_sta();
+                    $("#frm_datos")[0].reset(); 
+                }else if(data==3){
+                    $.notify("Registro actualizado","success");
+                    change_view(); 
+                    mostrar_sta();
+                    $("#frm_datos")[0].reset(); 
+                }else{
+                    $.notify("Error","error");
+                }
+            }
+        })
+      }
+  });
+
+//cosechas
+
+$("#main").on("click",".eliminar_cos",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_cos",
+        "cos" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Registro eliminado","success");
+                mostrar_cos();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_cos", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_cos",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.cos_nom);
+         $("#descripcion").val(data.cos_desc);
+         $("#icono").val(data.cos_ico);
+    }, "JSON");
+    $("#registrar_cos").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+function mostrar_cos(){
+    let obj = {
+      "accion" : "mostrar_cos"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.cos_nom}</td>
+        <td>${elem.cos_desc}</td>
+        <td>${elem.cos_ico}</td>
+        <td>
+        <a href="#" class="editar_cos"data-id="${elem.cos_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_cos" data-id="${elem.cos_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+$("#registrar_cos").click(function(){
+    let nom=$("#nombre").val();
+    let des=$("#descripcion").val();
+    let ico=$("#icono").val();
+    let obj = {
+    "accion" : "insertar_cos",
+    "nom":nom,
+    "des":des,
+    "ico":ico
+    
+    };
+      
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_cos";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+         }
+      
+        if(nom.length==0 || des.length==0  || ico.length==0){
+          $.notify("Por favor no dejes campos vacios","info");
+
+      }else{
+        $.ajax({
+            url:'../includes/_funciones.php',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                if(data==1){
+                    $.notify("Registro exitoso","success");
+                    change_view(); 
+                    mostrar_cos();
+                    $("#frm_datos")[0].reset(); 
+                }else if(data==3){
+                    $.notify("Registro actualizado","success");
+                    change_view(); 
+                    mostrar_cos();
+                    $("#frm_datos")[0].reset(); 
+                }else{
+                    $.notify("Error","error");
+                }
+            }
+        })
+      }
+  });
+//Productos
+
+$("#registrar_pro").click(function(){
+        
+    let nombre=$("#nombre").val();
+    let foto=$("#foto").val();
+    let des=$("#descripcion").val();
+    let obj = {
+    "accion" : "insertar_pro",
+    "nombre":nombre,
+    "des":des,
+    "foto":foto  
+    };
+      
+   
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_pro";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+        }
+      
+        if(nombre.length==0 || foto.length==0 ||des.length==0 ){
+            $.notify("Por favor no dejes campos vacios","info");
+        }else{ 
+            $.ajax({
+                url:'../includes/_funciones.php',
+                type:'POST',
+                dataType:'json',
+                data:obj,
+                success:function(data){
+                    if(data==1){
+                        $.notify("Registro exitoso","success");
+                        change_view(); 
+                        mostrar_pro();
+                        $("#frm_datos")[0].reset(); 
+                    }else if(data==3){
+                        $.notify("Registro actualizado","success");
+                        change_view(); 
+                        mostrar_pro();
+                        $("#frm_datos")[0].reset(); 
+                    }else{
+                        $.notify("Error","error");
+                    }
+                }
+            });
+        }
+});
+function mostrar_pro(){
+    let obj = {
+      "accion" : "mostrar_pro"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.pro_nom}</td>
+        <td>${elem.pro_desc}</td>
+        <td>${elem.pro_img}</td>
+        <td>
+        <a href="#" class="editar_pro"data-id="${elem.pro_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_pro" data-id="${elem.pro_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+  $("#main").on("click",".eliminar_pro",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_pro",
+        "pro" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Registro eliminadoeliminado","success");
+                mostrar_pro();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_pro", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_pro",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.pro_nom);
+         $("#descripcion").val(data.pro_desc);
+         $("#foto").val(data.pro_img);
+    }, "JSON");
+    $("#registrar_pro").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+//caracteristicas
+$("#main").on("click",".eliminar_car",function(e){
+    e.preventDefault();
+    let id = $(this).data('id');
+    let obj = {
+        "accion" : "eliminar_car",
+        "car" : id
+    }
+    
+    $.ajax({
+        url:'../includes/_funciones.php',
+        type: 'POST',
+        dataType: 'json',
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Registro eliminado","success");
+                mostrar_car();
+                
+            }else{
+                $.notify("Error","error");
+            }
+        }
+        
+    });
+    
+    
+});
+$("#main").on("click",".editar_car", function(e){
+    e.preventDefault();
+    change_view("formulario_datos");
+    let id=$(this).data("id")
+    let obj={
+        "accion" : "consulta_car",
+        "registro" : $(this).data("id")
+    }
+    $.post("../includes/_funciones.php", obj, function(data){
+         $("#nombre").val(data.car_nom);
+         $("#descripcion").val(data.car_desc);
+         $("#icono").val(data.car_ico);
+    }, "JSON");
+    $("#registrar_car").text("Actualizar").data("edicion", 1).data("registro", id);
+});
+function mostrar_car(){
+    let obj = {
+      "accion" : "mostrar_car"
+    }
+    
+    $.post("../includes/_funciones.php",obj, function(data){
+      let template = ``; 
+      $.each(data, function(e,elem){
+        template += `
+        <tr>
+        <td>${elem.car_nom}</td>
+        <td>${elem.car_desc}</td>
+        <td>${elem.car_ico}</td>
+        <td>
+        <a href="#" class="editar_car"data-id="${elem.car_id}"><i class="fas fa-edit"></i></a>
+        </td>
+    <td>
+        <a href="#" class="eliminar_car" data-id="${elem.car_id}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        `;
+      });
+      $("#table_datos tbody").html(template);
+    },"JSON");      
+  }
+$("#registrar_car").click(function(){
+    let nom=$("#nombre").val();
+    let des=$("#descripcion").val();
+    let ico=$("#icono").val();
+    let obj = {
+    "accion" : "insertar_car",
+    "nom":nom,
+    "des":des,
+    "ico":ico
+    
+    };
+      
+    $("#frm_datos").find("input").each(function(){
+      $(this).removeClass("error");
+      if($(this).val() == ""){
+        $(this).addClass("error").focus();
+        return false;
+      }else{
+        obj[$(this).prop("name")] = $(this).val();
+      }
+      
+    });
+       if($(this).data("edicion")==1){
+            obj["accion"]="editar_car";
+            obj["registro"]=$(this).data("registro");
+          $(this).text("Guardar").removeData("edicion").removeData("registro");
+         }
+      
+        if(nom.length==0 || des.length==0  || ico.length==0){
+          $.notify("Por favor no dejes campos vacios","info");
+
+      }else{
+        $.ajax({
+            url:'../includes/_funciones.php',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                if(data==1){
+                    $.notify("Registro exitoso","success");
+                    change_view(); 
+                    mostrar_car();
+                    $("#frm_datos")[0].reset(); 
+                }else if(data==3){
+                    $.notify("Registro actualizado","success");
+                    change_view(); 
+                    mostrar_car();
+                    $("#frm_datos")[0].reset(); 
+                }else{
+                    $.notify("Error","error");
+                }
+            }
+        })
+      }
+  });
+//Galeria
+
 $("#registrar_gal").click(function(){
         
     let nombre=$("#nombre").val();
@@ -62,7 +684,7 @@ $("#registrar_gal").click(function(){
       
     });
        if($(this).data("edicion")==1){
-            obj["accion"]="editar_portafolio";
+            obj["accion"]="editar_gal";
             obj["registro"]=$(this).data("registro");
           $(this).text("Guardar").removeData("edicion").removeData("registro");
         }
@@ -159,6 +781,8 @@ $("#main").on("click",".editar_gal", function(e){
     }, "JSON");
     $("#registrar_gal").text("Actualizar").data("edicion", 1).data("registro", id);
 });
+
+
 //servicios
 $("#main").on("click",".eliminar_servicios",function(e){
     e.preventDefault();
@@ -281,6 +905,7 @@ $("#registrar_ser").click(function(){
       }
   });
 
+//Usuarios
 $("#main").on("click",".eliminar_usuarios",function(e){
     e.preventDefault();
     let id = $(this).data('id');
@@ -405,6 +1030,9 @@ function mostrar_usuarios(){
       $("#table_datos tbody").html(template);
     },"JSON");      
   }
+
+
+  //Login 
 $("#login").on("click",function(event){
     event.preventDefault();
     let user=$("#correo").val();
@@ -434,6 +1062,9 @@ $("#login").on("click",function(event){
         }
     });
 });
+
+
+//Crear usuario desde el login
 $("#registrar").click(function(event){
     event.preventDefault();
     let nom=$("#nombre").val();
@@ -469,8 +1100,9 @@ $("#registrar").click(function(event){
 
 });
 
-
-$("#contacto").click(function(){
+//Enviar correo
+$("#contacto1").on("click",function(e){
+    e.preventDefault();
     let nom=$("#nombre").val();
     let correo=$("#correo").val();
     let tel=$("#tel").val();
@@ -485,12 +1117,18 @@ $("#contacto").click(function(){
     };
 
     $.ajax({
-        url:"./includes/_funciones.php",
+        url:"backend/includes/_funciones.php",
         type: "POST",
         dataType:"json",
-        data: obj
+        data: obj,
+        success:function(data){
+            if(data==1){
+                $.notify("Email enviado","success");
+            }else{
+                $.notify("Error","error");
+            }
+        }
     });
-    console.log(obj);
-    
-    
+    $("#contactos")[0].reset();    
+
 });

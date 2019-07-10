@@ -32,13 +32,13 @@ require_once '../includes/_funciones.php';
                 <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                    <a class="nav-link " href="usuarios.php">
+                    <a class="nav-link" href="usuarios.php">
                         <span data-feather="home"></span>
                         <h5>Usuarios</h5>
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="servicios.php">
+                    <a class="nav-link" href="servicios.php">
                         <span data-feather="home"></span>
                         <h5>Servicios</h5>
                     </a>
@@ -62,13 +62,13 @@ require_once '../includes/_funciones.php';
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="galeria.php">
+                    <a class="nav-link " href="galeria.php">
                         <span data-feather="home"></span>
                         <h5>Galeria</h5>
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="nosotros.php">
+                    <a class="nav-link active" href="nosotros.php">
                         <span data-feather="home"></span>
                         <h5>Nosotro somos</h5>
                         
@@ -95,7 +95,7 @@ require_once '../includes/_funciones.php';
        
        <main id="main" role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-        <h2>Servicios  
+        <h2>Integrantes
             <button type="button" id="btn_nuevo" class="btn btn-primary">Agregar nuevo
                 <span class="fas fa-plus"></span>
                 </button>
@@ -104,27 +104,27 @@ require_once '../includes/_funciones.php';
           <table class="table table-striped table-sm" id="table_datos">
             <thead>
               <tr>
-                <th>Id</th>
                 <th>Nombre</th>
-                <th>Email</th>
+                <th>Imagen</th>
+                <th>Fecha</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
               <?php 
-              $servicios = $db->select("servicios","*"); 
-              foreach ($servicios as $servicios => $ser) {
+              $nosotros = $db->select("integrantes","*"); 
+              foreach ($nosotros as $nosotros => $nos) {
                 ?>
                 <tr>
-                  <td><?php echo $ser["ser_id"]; ?></td>
-                  <td><?php echo $ser["ser_nom"]; ?></td>
-                  <td><?php echo $ser["ser_des"]; ?></td>
+                  <td><?php echo $nos["int_nombre"]; ?></td>
+                  <td><?php echo $nos["int_img"]; ?></td>
+                  <td><?php echo $nos["int_fa"]; ?></td>
                   <td>
-                    <a href="#" class="editar_servicios"data-id="<?php echo $ser["ser_id"]; ?>"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="editar_nos"data-id="<?php echo $nos["int_id"]; ?>"><i class="fas fa-edit"></i></a>
                  </td>
                 <td>
-                <a href="#" class="eliminar_servicios" data-id="<?php echo $ser["ser_id"]; ?>"><i class="fas fa-trash"></i></a>
+                <a href="#" class="eliminar_nos" data-id="<?php echo $nos["int_id"]; ?>"><i class="fas fa-trash"></i></a>
                 </td>
                   </tr>
                   <?php
@@ -143,15 +143,17 @@ require_once '../includes/_funciones.php';
                     <input type="text" class="form-control" name="nombre" id="nombre">
                   </div>
                   <div class="form-group">
-                    <label for="descripcion">Descripcion</label>
-                    <input type="text" class="form-control" name="descripcion" id="descripcion">
+                    <label for="foto">Foto</label>
+                    <input type="file" name="archivo" id="archivo">
+                    <input type="hidden" readonly="readonly" class="form-control" name="foto" id="foto">
+                    <div id="respuesta"></div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <button type="button" class="btn btn-outline-danger cancelar">Cancelar</button>
-                  <button type="button" class="btn btn-outline-success" id="registrar_ser">Guardar</button>
+                  <button type="button" class="btn btn-outline-success" id="registrar_nos">Guardar</button>
                   
                 </div>
               </div>

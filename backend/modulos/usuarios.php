@@ -34,21 +34,60 @@ require_once '../includes/_funciones.php';
                     <li class="nav-item">
                     <a class="nav-link active" href="usuarios.php">
                         <span data-feather="home"></span>
-                        Usuarios
+                        <h5>Usuarios</h5>
                     </a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="servicios.php">
                         <span data-feather="home"></span>
-                        Servicios
+                        <h5>Servicios</h5>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="caracteristica.php">
+                        <span data-feather="home"></span>
+                        Caracteristica
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="productos.php">
+                        <span data-feather="home"></span>
+                        Productos
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="cosecha.php">
+                        <span data-feather="home"></span>
+                        Cosecha
                     </a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="galeria.php">
                         <span data-feather="home"></span>
-                        Galeria
+                        <h5>Galeria</h5>
                     </a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="nosotros.php">
+                        <span data-feather="home"></span>
+                        <h5>Nosotro somos</h5>
+                        
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="stats.php">
+                        <span data-feather="home"></span>
+                        Stats
+                    </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                    <a class="nav-link" href="reviews.php">
+                        <span data-feather="home"></span>
+                        Reviews
+                    </a>
+                    </li>
+                    
                 </ul>
                 </div>
             </nav>
