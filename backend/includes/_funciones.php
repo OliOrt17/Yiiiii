@@ -1,8 +1,24 @@
-<?php  
-    require_once '_db.php';
+<?php
+  require_once '_db.php';
+  function create_session($user,$type){
+	session_start();
+	$_SESSION['US']= $user;
+	$_SESSION['USR_ID']= $type[0]["usr_id"];
+	$cookie_name = "lau";
+	$cookie_value = $type[0]["usr_id"];
+	setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+	return;
+}
 
+function get_data_session(){
+
+	return $_SESSION;
+}
     if(isset($_POST["accion"])){
 	    switch ($_POST["accion"]) {
+            case "delete_session":
+            delete_session();
+            break;
             case "login":
                 login();
             break;
@@ -153,12 +169,21 @@
         }
     }
 
+    function delete_session(){
+    	$_COOKIE['lau']=0;
+    	setcookie("lau", 0, time()-1,"/");
+    	session_start();
+    	session_destroy();
+
+    	return;
+
+    }
     //reviews
 
     function mostrar_rev(){
         global $db;
         $consultar = $db->select("reviews","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function editar_rev(){
         global $db;
@@ -166,7 +191,7 @@
         $editar=$db->update("reviews",["rev_nom"=>$nom,
         "rev_com"=>$des,"rev_cli"=>$ico,"rev_img"=>$foto],["rev_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -185,7 +210,7 @@
         $insertar=$db->insert("reviews",["rev_nom"=>$nom,"rev_com"=>$des,
         "rev_cli"=>$ico, "rev_img"=>$foto,"rev_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -217,7 +242,7 @@
         $editar=$db->update("integrantes",["int_nombre"=>$nombre,
         "int_img"=>$foto],["int_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -238,7 +263,7 @@
     function mostrar_nos(){
         global $db;
         $consultar = $db->select("integrantes","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function insertar_nos(){
         global $db;
@@ -246,7 +271,7 @@
         $insertar=$db->insert("integrantes",["int_nombre"=>$nombre,
         "int_img"=>$foto, "int_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -260,7 +285,7 @@
     function mostrar_sta(){
         global $db;
         $consultar = $db->select("stats","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function editar_sta(){
         global $db;
@@ -268,7 +293,7 @@
         $editar=$db->update("stats",["sta_nom"=>$nom,
         "sta_num"=>$des,"sta_ico"=>$ico],["sta_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -287,7 +312,7 @@
         $insertar=$db->insert("stats",["sta_nom"=>$nom,
         "sta_num"=>$des,"sta_ico"=>$ico, "sta_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -310,7 +335,7 @@
     function mostrar_cos(){
         global $db;
         $consultar = $db->select("cosecha","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function editar_cos(){
         global $db;
@@ -318,7 +343,7 @@
         $editar=$db->update("cosecha",["cos_nom"=>$nom,
         "cos_desc"=>$des,"cos_ico"=>$ico],["cos_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -337,7 +362,7 @@
         $insertar=$db->insert("cosecha",["cos_nom"=>$nom,
         "cos_desc"=>$des,"cos_ico"=>$ico]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -368,7 +393,7 @@
         $editar=$db->update("productos",["pro_nom"=>$nombre,
         "pro_img"=>$foto,"pro_desc"=>$des],["pro_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -389,7 +414,7 @@
     function mostrar_pro(){
         global $db;
         $consultar = $db->select("productos","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function insertar_pro(){
         global $db;
@@ -397,7 +422,7 @@
         $insertar=$db->insert("productos",["pro_nom"=>$nombre,
         "pro_img"=>$foto,"pro_desc"=>$des, "pro_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -408,7 +433,7 @@
     function mostrar_car(){
         global $db;
         $consultar = $db->select("caracteristicas","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function editar_car(){
         global $db;
@@ -416,7 +441,7 @@
         $editar=$db->update("caracteristicas",["car_nom"=>$nom,
         "car_desc"=>$des,"car_ico"=>$ico],["car_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -435,7 +460,7 @@
         $insertar=$db->insert("caracteristicas",["car_nom"=>$nom,
         "car_desc"=>$des,"car_ico"=>$ico, "car_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -467,7 +492,7 @@
         $editar=$db->update("galeria",["gal_titulo"=>$nombre,
         "gal_img"=>$foto],["gal_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -488,7 +513,7 @@
     function mostrar_gal(){
         global $db;
         $consultar = $db->select("galeria","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function insertar_gal(){
         global $db;
@@ -496,7 +521,7 @@
         $insertar=$db->insert("galeria",["gal_titulo"=>$nombre,
         "gal_img"=>$foto, "gal_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -524,7 +549,7 @@
     function mostrar_servicios(){
         global $db;
         $consultar = $db->select("servicios","*");
-	    echo json_encode($consultar); 
+	    echo json_encode($consultar);
     }
     function insertar_servicios(){
         global $db;
@@ -532,7 +557,7 @@
         $insertar=$db->insert("servicios",["ser_nom"=>$nom,
         "ser_des"=>$des, "ser_fa"=>date("Y").date("m").date("d")]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -551,7 +576,7 @@
         $editar=$db->update("servicios",["ser_nom"=>$nom,
         "ser_des"=>$des],["ser_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -578,7 +603,7 @@
         "usr_password"=>$password,
         "usr_status"=>1],["usr_id"=>$registro]);
 
-        
+
         if($editar){
             echo 3;
         }else{
@@ -599,7 +624,7 @@
         "usr_password"=>$password,
         "usr_status"=>1]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -609,7 +634,7 @@
     function mostrar_usuarios(){
         global $db;
         $consultar = $db->select("usuarios","*",["usr_status" => 1]);
-	    echo json_encode($consultar);   
+	    echo json_encode($consultar);
     }
     function eliminar_usuarios(){
         global $db;
@@ -621,15 +646,16 @@
         }else{
             echo 2;
         }
-    }    
+    }
     function login(){
 
         global $db;
-        session_start();
+
+
         extract($_POST);
         $conpassword=$db->select("usuarios","*",["usr_password"=>$password]);#consulta para la contraseña
         $conuser=$db->select("usuarios","*",["usr_email"=>$user]);#consulta para usuario
-    
+
       if($conpassword && $conuser){
             echo 1;
       }elseif(!$conuser){
@@ -637,6 +663,10 @@
       }elseif(!$conpassword){
           echo 2;
       }
+
+    $type=$db->select("usuarios","*",["AND"=>["usr_email"=>$user,"usr_password"=>$password]]);
+    create_session($user,$type);
+
     }
 
     function registro(){
@@ -648,7 +678,7 @@
         "usr_password"=>$pass,
         "usr_status"=>1]);
 
-        
+
         if($insertar){
             echo 1;
         }else{
@@ -656,11 +686,11 @@
         }
 
     }
-    
+
     function comentario(){
-        global $db;
         extract($_POST);
-        
+        global $db;
+
 
         //Datos para el correo
         $destino="xw_1745@hotmail.com";
@@ -670,14 +700,14 @@
         $header.="Correo: $correo \n";
         $header.="Telefono: $tel \n";
         $header.="Mensaje: $mensaje \n";
-        
+
         //enviando mensaje
        $enviar= mail($destino,$asunto,$header);
        if($enviar){
            echo 1;
        }
 
-    }   
-    
-    
+    }
+
+
 ?>
